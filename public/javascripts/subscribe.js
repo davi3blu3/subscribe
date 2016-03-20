@@ -17,21 +17,21 @@ $(document).ready(function(){
         // var infoObject = "body : " + JSON.stringify(info);
         // console.log(infoObject);
                  
-        // var xhr = new XMLHttpRequest();
-        // xhr.open('GET', 'localhost:3000', true);
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'http://localhost:3000', true);
 
-        // xhr.onreadystatechange = function () {
-        //     if (xhr.readyState === 4) {
-        //         if (xhr.status === 200) {
-        //             //document.getElementById('join').innerHTML = xhr.responseText;
-        //             console.log(xhr.responseText);
-        //         } else { 
-        //             console.log(xhr.statusText);
-        //         };
-        //     };
-        // };
-        
-        // xhr.send();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    //document.getElementById('join').innerHTML = xhr.responseText;
+                    console.log(xhr.responseText);
+                } else { 
+                    console.log(xhr.statusText);
+                };
+            };
+        };
+
+        xhr.send();
 
         function success() {
             console.log("Transmission successful!");
@@ -42,3 +42,5 @@ $(document).ready(function(){
 
     }) // end click
 }); // end ready    
+
+
