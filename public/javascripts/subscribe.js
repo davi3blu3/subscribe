@@ -9,11 +9,8 @@ $(document).ready(function(){
             type: "POST",
             data: {
               email_address: $("#email").val(),
-              status: "subscribed",
-              merge_fields: {
-                "FNAME": $("#firstName").val(),
-                "LNAME": $("#lastName").val()
-              }
+              first_name: $("#firstName").val(),
+              last_name: $("#lastName").val()
             },
             dataType: "json",
             success: function (result) {

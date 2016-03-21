@@ -3,8 +3,8 @@ var express = require('express'),
 	Mailchimp = require('../chimp.js');
 
 // Remember to import these from config.js 
-var api_key = 
-	my_list_id = 
+var api_key = /*hidden*/
+	my_list_id = /*hidden*/
 
 // variables for mailchip call function
 var mailchimp = new Mailchimp(api_key);
@@ -17,32 +17,29 @@ var callback = function (err, result) {
 		process.exit(0);
 }
 
-var subscribe_new = {
-  method : 'post',
-  path : '/lists/' + my_list_id + '/members/',
-  body : {
-    "email_address": "seventh@frommyapp.com",
-    "status": "subscribed",
-    "merge_fields": {
-        "FNAME": "Seven",
-        "LNAME": "From Client"
-    }
-  }
-}
-
 
 
 /* On incoming POST request with new subscriber info. */
 router.post('/', function(req, res, next) {
 
-	var subscriberData = 
+	// console.log("email = " + req.body.email_address);
+	// console.log("first name = " + req.body.first_name);
+	// console.log("last name = " + req.body.last_name);
 
-	// console.log("Email type " + (typeof req.body.email_address));
-	///console.log("FName = " + (typeof req.body.merge_fields));
-	// console.log("LName = " + req.body.merge_fields[FNAME]);
-	// console.log("Status = " + req.body.status);
+	var subscribe_new = {
+	  method : 'post',
+	  path : '/lists/' + my_list_id + '/members/',
+	  body : {
+	    "email_address": req.body.email_address,
+	    "status": "subscribed",
+	    "merge_fields": {
+	        "FNAME": req.body.first_name,
+	        "LNAME": req.body.last_name
+	    }
+	  }
+	}
 
-	// mailchimp.request(subscribe_new, callback)
+	mailchimp.request(subscribe_new, callback)
 
 	// sending back JSON message to client side
 	res.send(req.body);
