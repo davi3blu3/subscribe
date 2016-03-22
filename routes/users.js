@@ -1,13 +1,10 @@
 var express = require('express'),
 	router = express.Router();
-	Mailchimp = require('../chimp.js');
-
-// Remember to import these from config.js 
-var api_key = /*hidden*/
-	my_list_id = /*hidden*/
+	Mailchimp = require('../chimp.js'),
+	config = require('../config.js');
 
 // variables for mailchip call function
-var mailchimp = new Mailchimp(api_key);
+var mailchimp = new Mailchimp(config.api_key);
 
 var callback = function (err, result) {
 	if (err) {
@@ -28,7 +25,7 @@ router.post('/', function(req, res, next) {
 
 	var subscribe_new = {
 	  method : 'post',
-	  path : '/lists/' + my_list_id + '/members/',
+	  path : '/lists/' + config.my_list_id + '/members/',
 	  body : {
 	    "email_address": req.body.email_address,
 	    "status": "subscribed",

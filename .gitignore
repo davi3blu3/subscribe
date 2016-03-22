@@ -36,3 +36,6 @@ jspm_packages
 # Mac folder files
 DS_Store
 
+# Private API key / IDs
+config.js
+
